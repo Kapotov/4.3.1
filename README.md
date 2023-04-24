@@ -125,8 +125,9 @@ for i in current_ipadds:
 
 ### YAML-файл(ы), который(е) записал ваш скрипт:
 
-```yaml
-???
+```drive.google.com: 142.251.1.194
+mail.google.com: 173.194.222.83
+google.com: 173.194.222.101
 ```
 
 ---
