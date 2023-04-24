@@ -166,14 +166,58 @@ ____
 ### Ваш скрипт:
 
 ```python
-???
+import json
+import yaml
+import sys
+import os
+
+def parse_file(filename):
+    # Проверяем расширение файла
+    if not filename.endswith('.json') and not filename.endswith('.yml'):
+        print('Error: Invalid file extension')
+        sys.exit(1)
+
+    # Определяем формат данных в файле
+    try:
+        with open(filename) as f:
+            data = json.load(f)
+            format = 'json'
+    except ValueError:
+        try:
+            with open(filename) as f:
+                data = yaml.load(f, Loader=yaml.FullLoader)
+                format = 'yaml'
+        except yaml.YAMLError as e:
+            print('Error:', e)
+            sys.exit(1)
+
+    # Преобразуем данные в другой формат
+    if format == 'json':
+        converted_data = yaml.dump(data)
+        new_filename = os.path.splitext(filename)[0] + '.yml'
+    else:
+        converted_data = json.dumps(data, indent=4)
+        new_filename = os.path.splitext(filename)[0] + '.json'
+
+    # Записываем преобразованные данные в новый файл
+    with open(new_filename, 'w') as f:
+        f.write(converted_data)
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print('Usage: python parser.py <filename>')
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    parse_file(filename)
 ```
 
-### Пример работы скрипта:
+Пример использования:
 
-???
-
-----
+```bash
+$ python parser.py data.json
+$ python parser.py data.yml
+```
 
 ### Правила приёма домашнего задания
 
