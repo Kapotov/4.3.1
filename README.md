@@ -63,8 +63,50 @@
 
 ### Ваш скрипт:
 
-```python
-???
+```#!/usr/bin/env python3
+
+import socket
+import json
+import yaml
+
+
+file_old = open('ip_add.log', 'r')
+stage_ipadds = json.loads(file_old.read())
+
+ip_item = []
+dns_item = ["drive.google.com", "mail.google.com", "google.com"]
+for resolv in dns_item:
+    ip_item.append(socket.gethostbyname(resolv))
+current_ipadds = dict(zip(dns_item, ip_item))
+
+stage_ipadds_new = open('ip_add.log', 'w')
+stage_ipadds_new.write(json.dumps(current_ipadds))
+stage_ipadds_new.close()
+
+print('For check:')
+print(current_ipadds)
+print(f'{stage_ipadds}\n')
+
+with open('first.json', 'w') as js:
+    js.write('')
+with open('second.yml', 'w') as ym:
+    ym.write('')
+
+for i in current_ipadds:
+    if (current_ipadds[i] == stage_ipadds[i]):
+        print(f'<{i}> - <{current_ipadds[i]}>')
+        rr = {i: current_ipadds[i]}
+        with open('first.json', 'a') as js:
+            js.write(f'{json.dumps(rr)}\n')
+        with open('second.yml', 'a') as ym:
+            ym.write(yaml.dump(rr))
+    else:
+        print(f'[ERROR] <{i}> IP mismatch: <{stage_ipadds[i]}> <{current_ipadds[i]}>')
+        rr2 = {i: current_ipadds[i]}
+        with open('first.json', 'a') as js:
+            js.write(f'{json.dumps(rr2)}\n')
+        with open('second.yml', 'a') as ym:
+            ym.write(yaml.dump(rr2))
 ```
 
 ### Вывод скрипта при запуске во время тестирования:
