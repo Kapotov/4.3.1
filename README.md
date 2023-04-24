@@ -63,7 +63,8 @@
 
 ### Ваш скрипт:
 
-```#!/usr/bin/env python3
+```
+#!/usr/bin/env python3
 
 import socket
 import json
@@ -112,20 +113,23 @@ for i in current_ipadds:
 ### Вывод скрипта при запуске во время тестирования:
 
 ```
+
 ![111](https://user-images.githubusercontent.com/123774335/233934987-9f103b50-a2bc-49a0-8706-7f1dcff92314.png)
 
 ```
 
 ### JSON-файл(ы), который(е) записал ваш скрипт:
 
-```{"drive.google.com": "142.251.1.194"}
+```
+{"drive.google.com": "142.251.1.194"}
 {"mail.google.com": "173.194.222.83"}
 {"google.com": "173.194.222.101"}
 ```
 
 ### YAML-файл(ы), который(е) записал ваш скрипт:
 
-```drive.google.com: 142.251.1.194
+```
+drive.google.com: 142.251.1.194
 mail.google.com: 173.194.222.83
 google.com: 173.194.222.101
 ```
